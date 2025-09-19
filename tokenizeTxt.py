@@ -6,7 +6,7 @@ import tokenize
 
 import spacy
 
-FILEPATH = "/home/apollo/Documents/pythonVenv/pytorch_proj/dataset.py"
+FILEPATH = "FILE_TO_TOKENIZE"
 
 def main(filePath=""):
  #test = open(filePath, "r", encoding='utf-8').read().split('\n')
