@@ -1,5 +1,5 @@
 
-class Vocalbulary(object):
+class Vocabulary(object):
  """Class to process text and extract vocab for mapping"""
  def __init__(self, token_to_idx=None, add_unk=True,
  unk_token="<UNK>"):
