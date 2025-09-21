@@ -37,7 +37,7 @@ class Vocabulary(object):
    """ inits Vocab from a serialized dictionary """
    return cls(**contents)
 
-  def add_token(self, token):
+ def add_token(self, token):
    """ Update mapping dictionaries based on token 
    Args:
    token (str): the item to add into the Vocabulary
@@ -45,14 +45,14 @@ class Vocabulary(object):
    index (int): the integer corresponding to the token
    """
   # If token is already in vocab, just get index
-  if token in self._token_to_idx:
-   index = self._token_to_idx[token]
-  else: # else create new dict entries
-   index = len(self._token_to_idx)
-   self._token_to_idx[token] = index
-   self._idx_to_token[index] = token;
-  return index;
-
+   if token in self._token_to_idx:
+    index = self._token_to_idx[token]
+   else: # else create new dict entries
+    index = len(self._token_to_idx)
+    self._token_to_idx[token] = index
+    self._idx_to_token[index] = token
+   return index;
+   
 def lookup_token(self, token):
  """ Retrieve the index associated with the token
     of the UNK index if token isn't present
