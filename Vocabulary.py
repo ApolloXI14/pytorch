@@ -26,16 +26,16 @@ class Vocabulary(object):
   if add_unk:
    self.unk_index = self.add_token(unk_token)
 
-  def to_serializable(self):
-   """ returns a dictionary that can be serialized"""
-   return { 'token_to_index': self._token_to_idx,
-    'add_unk': self._add_unk,
-    'unk_token': self._unk_token}
+ def to_serializable(self):
+  """ returns a dictionary that can be serialized"""
+  return { 'token_to_index': self._token_to_idx,
+  'add_unk': self._add_unk,
+  'unk_token': self._unk_token}
 
-  @classmethod
-  def from_serializable(cls, contents):
-   """ inits Vocab from a serialized dictionary """
-   return cls(**contents)
+ @classmethod
+ def from_serializable(cls, contents):
+  """ inits Vocab from a serialized dictionary """
+  return cls(**contents)
 
  def add_token(self, token):
    """ Update mapping dictionaries based on token 
@@ -53,21 +53,21 @@ class Vocabulary(object):
     self._idx_to_token[index] = token
    return index;
    
-def lookup_token(self, token):
- """ Retrieve the index associated with the token
-    of the UNK index if token isn't present
-  Args:
-    token (str): the token to look up
-  Returns:
-    index (int): the index corresponding to the token
-  Note:
-    'unk_index' needs to be >=0 (having been into Vocab)
-    for the UNK functionality
- """
- if self.add_unk:
-  return self._token_to_idx.get(token, self.unk_index)
- else:
-  return self._token_to_idx[token]
+ def lookup_token(self, token):
+   """ Retrieve the index associated with the token
+   of the UNK index if token isn't present
+   Args:
+   token (str): the token to look up
+   Returns:
+   index (int): the index corresponding to the token
+   Note:
+   'unk_index' needs to be >=0 (having been into Vocab)
+   for the UNK functionality
+   """
+   if self._add_unk:
+    return self._token_to_idx.get(token, self.unk_index)
+   else:
+    return self._token_to_idx[token]
 
  def lookup_index(self, index):
    """ Return the token associated with the index
