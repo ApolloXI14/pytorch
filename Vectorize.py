@@ -36,5 +36,6 @@ class TextVectorizer(object):
     Returns:
         an instance of the TextVectorizer class
     """
-    text_vocab = Vocabulary.from_serializable(contents['text_vocab'])
+    text_vocab = Vocabulary.from_serializable(contents)
+    #text_vocab = Vocabulary.from_serializable(contents['text_vocab'])
     return cls(text_vocab=text_vocab)
