@@ -67,7 +67,7 @@ class Vocabulary(object):
    if self._add_unk:
     return self._token_to_idx.get(token, self.unk_index)
    else:
-    return self._token_to_idx[token]
+    return self._token_to_idx.get(token)
 
  def lookup_index(self, index):
    """ Return the token associated with the index

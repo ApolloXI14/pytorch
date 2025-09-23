@@ -7,7 +7,7 @@ import tokenize
 
 import spacy
 
-FILEPATH = "FILEPATH HERE"
+FILEPATH = "FILE_PATH_HERE"
 
 
 
@@ -39,13 +39,14 @@ def main(filePath=""):
   # languages seamlessly; explore later
   #text = nlp(open(filePath, "rb").read().lower())
   text = preprocess_text(text); 
-  text = nlp(text); # tokenize text
+  text = nlp(text); 
   tokens = [str(token) for token in text]
-  #print(tokens)
   dict = {}
   for li, token in enumerate(tokens):
-    dict[li] = token;
-    print(dict)
+    # If token is NOT in dictionary, only then add, to prevent
+    # skipping IDs on keys that appear more than once
+    if token not in dict:
+     dict[token] = li;
   return dict
 
 if __name__ ==  "__main__":

@@ -14,18 +14,37 @@ class TextVectorizer(object):
   """
   self.text_vocab = textDict;
 
- def vectorize(self, textDoc):
+ def vectorize(self, ngram):
   """
-    Create a collapsed one-hot vector for a text document
+    Create a collapsed one-hot vector for an ngram
     Args:
-        textDoc (str): A text document
+        ngram (str): A piece of text
     Returns: one_hot (np.ndarray): the collapsed one-hot encoding
   """
   one_hot = torch.zeros(len(self.text_vocab), dtype=torch.float32)
-  for token in textDoc.split(" "):
+  for token in ngram.split(" "):
    if token not in string.punctuation:
     one_hot[self.text_vocab.lookup_token(token)] = 1;
   return one_hot
+
+ @classmethod
+ def from_dataframe(self, text_df):
+  """
+    Instantiate the vectorizer from the dataset dataframe
+    Args:
+        text_df (pandas.DataFrame):  the text dataset
+    Returns:
+        an instance of TextVectorizer
+    Note:
+        Pandas Dataframes are interchangeable with dictionaries
+        or 2D arrays
+  """
+  text_vocab = Vocabulary(add_unk=True)
+  # TODO: My "text_df" structure is somewhat different from book...probably
+  # fine?
+  for word in text_df:
+   text_vocab.add_token(text_df[word])
+  return cls(text_df)
 
  @classmethod
  def from_serializable(cls, contents):
@@ -39,3 +58,11 @@ class TextVectorizer(object):
     text_vocab = Vocabulary.from_serializable(contents)
     #text_vocab = Vocabulary.from_serializable(contents['text_vocab'])
     return cls(text_vocab=text_vocab)
+
+ def to_serializable(self):
+  """ Create the serializable dictionary for caching
+
+  Returns:
+    contents (dict): the serializable dictionary
+  """
+  return { 'text_vocab': self.text_vocab.to_serializable() }
