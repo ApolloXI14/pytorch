@@ -1,4 +1,5 @@
 from torch.utils.data import Dataset
+from Vectorize import TextVectorizer
 
 class TextDataset(Dataset):
  def __init__(self, text_df, vectorizer):
@@ -51,8 +52,7 @@ class TextDataset(Dataset):
     split (str): one of "train", "val", or "test"
   """
   self._target_split = split;
-  self._text_df, self._target_size =
-  self._lookup_dict[split]
+  self._text_df, self._target_size = self._lookup_dict[split]
 
  def __len__(self):
   return self._target_size;
@@ -67,8 +67,7 @@ class TextDataset(Dataset):
   """
   row = self._target_df.iloc[index];
   text_vector = self._vectorizer.vectorize(row.text);
-  vocab_index =
-  self._vectorizer.text_vocab.lookup_token(row.text);
+  vocab_index = self._vectorizer.text_vocab.lookup_token(row.text);
 
   return {'x_data': text_vector, 'y_data': vocab_index }
 

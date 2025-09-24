@@ -3,6 +3,7 @@ from TextDataset import TextDataset
 from Transformer import TextTransformer
 import torch.optim as optim
 from trainingArgs import args
+from DataLoader import generate_batches
 
 def make_train_state(args):
  return {'epoch_index': 0,
@@ -26,8 +27,7 @@ TextDataset.load_dataset_and_make_vectorizer(args.model_state_file)
 vectorizer = dataset.get_vectorizer();
 
 #model
-#TODO: input_dim, hidden_dim, output_dim args...vectors?
-transformer = TextTransformer()
+transformer = TextTransformer(3, 300, 4)
 transformer = transformer.to(args.device)
 
 #loss and optimizer
