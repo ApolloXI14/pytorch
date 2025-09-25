@@ -1,5 +1,6 @@
 from torch.utils.data import Dataset
 from Vectorize import TextVectorizer
+import pandas as pd
 
 class TextDataset(Dataset):
  def __init__(self, text_df, vectorizer):
