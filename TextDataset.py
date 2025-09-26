@@ -37,8 +37,7 @@ class TextDataset(Dataset):
     an instance of TextDataset
   """
   text_df = pd.read_csv(text_csv);
-  return cls(text_df,
-  TextVectorizer.from_dataframe(text_df))
+  return cls(text_df, TextVectorizer.from_dataframe(text_df))
 
  def get_vectorizer(self):
   """
