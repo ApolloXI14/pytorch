@@ -1,6 +1,7 @@
 from Vocabulary import Vocabulary
 import torch
 import string
+from tokenizeTxt import main as tokenizeTxt
 
 class TextVectorizer(object):
  """
@@ -28,7 +29,7 @@ class TextVectorizer(object):
   return one_hot
 
  @classmethod
- def from_dataframe(self, text_df):
+ def from_dataframe(cls, text_df):
   """
     Instantiate the vectorizer from the dataset dataframe
     Args:
@@ -39,12 +40,15 @@ class TextVectorizer(object):
         Pandas Dataframes are interchangeable with dictionaries
         or 2D arrays
   """
-  text_vocab = Vocabulary(add_unk=True)
-  # TODO: My "text_df" structure is somewhat different from book...probably
-  # fine?
-  for word in text_df:
-   text_vocab.add_token(text_df[word])
-  return cls(text_df)
+  text_vocab = Vocabulary(add_unk=True) # init an empty vocab dict
+  # go through csv list of text files to turn into dicts
+  for txtDoc in text_df: 
+   textDict = tokenizeTxt(txtDoc);
+   # inner loop to append "textDict" into text_vocab
+   for word in textDict:
+    text_vocab.add_token(textDict[word])
+  #print(f'textDict: {textDict}')
+  return cls(textDict)
 
  @classmethod
  def from_serializable(cls, contents):
