@@ -47,8 +47,8 @@ class TextVectorizer(object):
    # inner loop to append "textDict" into text_vocab
    for word in textDict:
     text_vocab.add_token(textDict[word])
-  #print(f'textDict: {textDict}')
-  return cls(textDict)
+  #print(f'textDict: {text_vocab}')
+  return cls(text_vocab)
 
  @classmethod
  def from_serializable(cls, contents):
