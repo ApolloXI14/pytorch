@@ -1,4 +1,4 @@
-from torch import DataLoader
+from torch.utils.data import DataLoader
 
 def generate_batches(dataset, batch_size, shuffle=True,
 drop_last=True, device="cpu"):

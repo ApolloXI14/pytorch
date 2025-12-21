@@ -2,6 +2,7 @@
 from TextDataset import TextDataset
 from Transformer import TextTransformer
 import torch.optim as optim
+import torch
 from trainingArgs import args
 from DataLoader import generate_batches
 
@@ -17,7 +18,7 @@ def make_train_state(args):
 train_state = make_train_state(args)
 
 args.cuda = True;
-if not torch.cuda_is_available():
+if not torch.cuda.is_available():
  args.cuda = False;
 args.device = torch.device("cuda" if args.cuda else "cpu")
 

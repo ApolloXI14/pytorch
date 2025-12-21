@@ -7,9 +7,9 @@ with static analyzers, and supports command-line training with
 args = Namespace(
     #Data and path info
     frequency_cutoff=25,
-    model_state_file="",
-    save_dir="FILE_PATH",
-    vectorizer_file="Vectorizer.py",
+    model_state_file="FILE_PATH",
+    save_dir="DIRECTORY",
+    vectorizer_file="Vectorize.py",
     #Model hyper params
     hidden_dim=300,
     #Training params
