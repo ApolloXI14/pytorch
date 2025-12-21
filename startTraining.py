@@ -22,8 +22,7 @@ if not torch.cuda_is_available():
 args.device = torch.device("cuda" if args.cuda else "cpu")
 
 #dataset and vectorizer
-dataset =
-TextDataset.load_dataset_and_make_vectorizer(args.model_state_file)
+dataset = TextDataset.load_dataset_and_make_vectorizer(args.model_state_file);
 vectorizer = dataset.get_vectorizer();
 
 #model

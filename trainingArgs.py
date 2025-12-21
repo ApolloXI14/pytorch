@@ -1,4 +1,4 @@
-from argspace import Namespace
+from argparse import Namespace
 """
 "Namespace" nicely encapsulates a property dictionary and works well
 with static analyzers, and supports command-line training with

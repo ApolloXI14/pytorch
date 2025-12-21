@@ -78,7 +78,8 @@ class Vocabulary(object):
    Raises:
    KeyError: if index is not in Vocab
    """
-   if index not in self._idx_token:
+   #if index not in self._idx_token:
+   if index not in self._idx_to_token:
     raise KeyError("the index (%d) is not in the Vocabulary" % index)
    return self._idx_to_token[index]
   
