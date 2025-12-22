@@ -45,8 +45,9 @@ def main(filePath=""):
   for li, token in enumerate(tokens):
     # If token is NOT in dictionary, only then add, to prevent
     # skipping IDs on keys that appear more than once
+    currentDictLen = len(dict.items());
     if token not in dict:
-     dict[token] = li;
+     dict[token] = currentDictLen + 1;
   return dict
 
 if __name__ ==  "__main__":
