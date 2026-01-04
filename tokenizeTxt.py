@@ -35,24 +35,28 @@ def main(filepath=""):
 
 
   tokens = []
-  nlp = spacy.load("en_core_web_sm");
   dict = {}
   if ".csv" in filepath:
-   print(f'pandas functionality needs to be implemented here to read {filepath}');
    csv_file = pd.read_csv(filepath);
-   print(csv_file);
    csv_train = csv_file.train;
   for file in range(0,len(csv_train)):
-   print(csv_train[file]);
    #open(csv_train[file].strip()).read();
-   print(open(csv_train[file].strip()).read());
+   text = open(csv_train[file].strip()).read();
+   thisDict = makeDict(text);
+   dict.update(thisDict);
   if ".txt" in filepath:
-   print('.txt detected')
    text = open(filepath, "r", encoding="utf-8").read().lower();
-   print(text)
+   thisDict = makeDict(text);
+   dict.update(thisDict);
+  #print(f'RESULT: {dict}');
+  return dict;
+
+def makeDict(text):
+   dict = {};
    # TODO: Text can also be processed as bytes, which can support all
    # languages seamlessly; explore later
    #text = nlp(open(filePath, "rb").read().lower())
+   nlp = spacy.load("en_core_web_sm");
    text = preprocess_text(text); 
    text = nlp(text); 
    tokens = [str(token) for token in text]
@@ -62,7 +66,8 @@ def main(filepath=""):
     currentDictLen = len(dict.items());
     if token not in dict:
      dict[token] = currentDictLen + 1;
-  return dict
+   return dict
+
 
 if __name__ ==  "__main__":
  parser = argparse.ArgumentParser();
